@@ -1,9 +1,9 @@
-const { promises, constants } = require('fs');
-const path = require('path');
-const { exit } = require('process');
+import { constants, promises } from 'fs';
+import path from 'path';
+import { exit } from 'process';
 
 if (process.argv.length === 2) {
-  console.info('ℹ Usage: npm run setup {day}');
+  console.info('ℹ️ Usage: npm run setup {day}');
   exit(0);
 }
 const day = parseInt(process.argv[2]);
@@ -23,7 +23,7 @@ const startPath = process.cwd();
   console.log('All done! Enjoy your new puzzle! 🎅');
 })();
 
-async function createDirectoryIfItDoesNotExist(dir) {
+async function createDirectoryIfItDoesNotExist(dir: string) {
   try {
     await promises.access(dir, constants.F_OK | constants.W_OK);
   } catch {
@@ -32,7 +32,7 @@ async function createDirectoryIfItDoesNotExist(dir) {
   }
 }
 
-async function createFileWithContentIfItDoesNotExist(name, content) {
+async function createFileWithContentIfItDoesNotExist(name: string, content: string) {
   try {
     await promises.access(name, constants.R_OK);
     console.log(`  File ${name} exists, will not overwrite.`);
@@ -57,8 +57,9 @@ async function createInputFiles() {
   );
 }
 
-async function copyTemplate(from, to) {
-  const content = (await promises.readFile(from, { encoding: 'utf8' })).replace(/0/g, day); // dirty, I know 😅
+async function copyTemplate(from: string, to: string) {
+  const template = await promises.readFile(from, { encoding: 'utf8' });
+  const content = template.replace(/0/g, day.toString()); // dirty, I know 😅
   createFileWithContentIfItDoesNotExist(to, content);
 }
 

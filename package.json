@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && tsc",
     "test": "jest",
-    "setup": "node src/setup.js",
+    "setup": "ts-node src/setup.ts",
     "start": "npm run build && node build/index.js",
     "prettier:fixall": "prettier . --write"
   },
