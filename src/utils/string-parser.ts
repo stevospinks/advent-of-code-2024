@@ -43,9 +43,9 @@ export class StringParser {
     return input.split(/\r?\n\r?\n/);
   }
 
-  public static To2dMatrix(input: string): string[][] {
+  public static To2dMatrix(input: string, separator = ''): string[][] {
     const result = StringParser.ToStringArray(input).reduce((acc: string[][], line) => {
-      const charArray = line.split('');
+      const charArray = line.split(separator);
       acc.push(charArray);
       return acc;
     }, []);
