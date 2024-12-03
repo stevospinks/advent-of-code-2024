@@ -12,7 +12,7 @@ describe('On Day 1', () => {
     expect(day1.solveForPartOne(example)).toBe('11');
   });
 
-  xit(`part 2 solves for the example input`, () => {
-    expect(day1.solveForPartTwo(example)).toBe('hello');
+  it(`part 2 solves for the example input`, () => {
+    expect(day1.solveForPartTwo(example)).toBe('31');
   });
 });

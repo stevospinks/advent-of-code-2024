@@ -20,7 +20,15 @@ class Day1 extends Day {
   }
 
   solveForPartTwo(input: string): string {
-    return input;
+    const [a1, a2] = StringParser.ToNumberArray(input, '   ');
+
+    const result = a1.reduce((acc, cur) => {
+      const curCount = a2.filter((n) => n === cur).length;
+      acc += cur * curCount;
+      return acc;
+    }, 0);
+
+    return result.toString();
   }
 }
 
