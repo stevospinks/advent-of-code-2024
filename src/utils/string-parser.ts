@@ -52,4 +52,21 @@ export class StringParser {
 
     return result;
   }
+
+  public static ToNumberArray(input: string, numberSeparator: string): number[][] {
+    const result = StringParser.ToStringArray(input).reduce((acc: number[][], line, o, arr) => {
+      const numArray = line.split(numberSeparator).map((c) => parseInt(c));
+      for (let i = 0; i < numArray.length; i++) {
+        if (acc.length === i) {
+          acc.push([]);
+        }
+
+        const num = numArray[i];
+        acc[i].push(num);
+      }
+      return acc;
+    }, []);
+
+    return result;
+  }
 }
